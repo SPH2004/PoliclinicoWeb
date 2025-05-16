@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policlínico | Centro Médico Especializado</title>
+    <meta name="description" content="Policlínico especializado con las mejores instalaciones y profesionales de la salud">
+    
+    <!-- Preconexión para mejorar performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <style>
+        /* Reset y estilos base */
+        :root {
+            --primary: #0066cc;
+            --secondary: #004d99;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --font-main: 'Roboto', sans-serif;
+            --font-headings: 'Open Sans', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-headings);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 30px;
+        }
+        
+        .main-nav a {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .main-nav a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Especialidades */
+        .especialidades {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .especialidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .especialidad-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .especialidad-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .especialidad-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .especialidad-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .especialidad-card:hover .especialidad-img img {
+            transform: scale(1.1);
+        }
+        
+        .especialidad-content {
+            padding: 20px;
+        }
+        
+        .especialidad-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Formulario de Citas */
+        .cita-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo Policlínico">
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#especialidades">Especialidades</a></li>
+                    <li><a href="#doctores">Doctores</a></li>
+                    <li><a href="#citas">Reserva tu Cita</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Cuidamos de tu salud con excelencia médica</h1>
+            <p>En nuestro policlínico encontrarás atención especializada con tecnología de punta y profesionales altamente calificados.</p>
+            <a href="#citas" class="btn">Reservar Cita</a>
+        </div>
+    </section>
+
+    <!-- Especialidades -->
+    <section class="especialidades" id="especialidades">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Especialidades</h2>
+                <p>Contamos con las principales especialidades médicas para tu cuidado integral</p>
+            </div>
+            
+            <div class="especialidades-grid">
+                <!-- Tarjeta 1 -->
+                <div class="especialidad-card">
+                    <div class="especialidad-img">
+                        <img src="img/cardiologia.jpg" alt="Cardiología">
+                    </div>
+                    <div class="especialidad-content">
+                        <h3>Cardiología</h3>
+                        <p>Evaluación, diagnóstico y tratamiento de enfermedades del corazón y sistema cardiovascular.</p>
+                        <a href="#" class="btn">Ver más</a>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 2 -->
+                <div class="especialidad-card">
+                    <div class="especialidad-img">
+                        <img src="img/pediatria.jpg" alt="Pediatría">
+                    </div>
+                    <div class="especialidad-content">
+                        <h3>Pediatría</h3>
+                        <p>Atención especializada para niños y adolescentes con enfoque preventivo y curativo.</p>
+                        <a href="#" class="btn">Ver más</a>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 3 -->
+                <div class="especialidad-card">
+                    <div class="especialidad-img">
+                        <img src="img/ginecologia.jpg" alt="Ginecología">
+                    </div>
+                    <div class="especialidad-content">
+                        <h3>Ginecología</h3>
+                        <p>Cuidado integral de la salud femenina en todas las etapas de la vida.</p>
+                        <a href="#" class="btn">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Citas -->
+    <section class="cita-section" id="citas">
+        <div class="container">
+            <div class="section-title">
+                <h2>Reserva tu Cita Médica</h2>
+                <p>Complete el formulario y nos comunicaremos con usted para confirmar su cita</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="cita-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombres Completos</label>
+                            <input type="text" id="nombre" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellidos Completos</label>
+                            <input type="text" id="apellido" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono/Celular</label>
+                            <input type="tel" id="telefono" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="especialidad">Especialidad</label>
+                            <select id="especialidad" class="form-control" required>
+                                <option value="">Seleccione una especialidad</option>
+                                <option value="cardiologia">Cardiología</option>
+                                <option value="pediatria">Pediatría</option>
+                                <option value="ginecologia">Ginecología</option>
+                                <option value="medicina-general">Medicina General</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha Preferida</label>
+                            <input type="date" id="fecha" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje Adicional (Opcional)</label>
+                        <textarea id="mensaje" class="form-control" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Reservar Cita</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Sobre Nosotros</h3>
+                    <p>Somos un policlínico comprometido con la salud de nuestros pacientes, ofreciendo atención médica de calidad con tecnología de punta.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#especialidades">Especialidades</a></li>
+                        <li><a href="#doctores">Nuestros Doctores</a></li>
+                        <li><a href="#citas">Reserva tu Cita</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Horario de Atención</h3>
+                    <ul class="footer-links">
+                        <li>Lunes a Viernes: 8:00 am - 8:00 pm</li>
+                        <li>Sábados: 9:00 am - 2:00 pm</li>
+                        <li>Domingos: Cerrado</li>
+                        <li>Emergencias: 24/7</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. Principal 123, Distrito Médico, Ciudad</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(01) 234-5678</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>987 654 321</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>contacto@policlinico.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Policlínico. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript básico para funcionalidad
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menú móvil
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const mainNav = document.querySelector('.main-nav ul');
+            
+            menuBtn.addEventListener('click', function() {
+                mainNav.style.display = mainNav.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Formulario de citas
+            const citaForm = document.getElementById('cita-form');
+            
+            if (citaForm) {
+                citaForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Aquí iría la lógica para enviar el formulario
+                    alert('Su cita ha sido solicitada. Nos comunicaremos con usted para confirmar.');
+                    citaForm.reset();
+                });
+            }
+            
+            // Ajustar menú en resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 992) {
+                    mainNav.style.display = 'flex';
+                } else {
+                    mainNav.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
